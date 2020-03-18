@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>generator-code</artifactId>
+  <build>
+    <plugins>
+      <!-- Plug-in for Compiled to the specified JDK version -->
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <!-- encoding -->
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <showWarnings>true</showWarnings>
+          <!-- Source code jdk version -->
+          <source>${jdk.version}</source>
+          <!-- target class jdk version -->
+          <target>${jdk.version}</target>
+        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>${maven-compiler-plugin.version}</version>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <!-- Lombok -->
+    <dependency>
+      <artifactId>lombok</artifactId>
+      <groupId>org.projectlombok</groupId>
+    </dependency>
+
+    <!-- Spring Boot Starter -->
+    <dependency>
+      <artifactId>spring-boot-starter</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <!-- Spring Boot Web Starter -->
+    <dependency>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <exclusions>
+        <!-- exclusion tomcat dependency -->
+        <exclusion>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+          <groupId>org.springframework.boot</groupId>
+        </exclusion>
+      </exclusions>
+      <groupId>org.springframework.boot</groupId>
+      <version>${spring-boot.version}</version>
+    </dependency>
+    <!-- Spring Boot Undertow Starter -->
+    <dependency>
+      <artifactId>spring-boot-starter-undertow</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <!-- Spring Boot Configuration Processor -->
+    <dependency>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <optional>true</optional>
+    </dependency>
+    <!-- Spring Boot AOP Starter -->
+    <dependency>
+      <artifactId>spring-boot-starter-aop</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+
+    <!-- MySQL Connector -->
+    <dependency>
+      <artifactId>mysql-connector-java</artifactId>
+      <groupId>mysql</groupId>
+      <version>${mysql.connector.version}</version>
+    </dependency>
+
+    <!-- Mybatis Plus Boot Starter -->
+    <dependency>
+      <artifactId>mybatis-plus-boot-starter</artifactId>
+      <groupId>com.baomidou</groupId>
+      <version>${mybatis-plus-boot-starter.version}</version>
+    </dependency>
+
+    <!-- Mybatis Plus Extension -->
+    <dependency>
+      <artifactId>mybatis-plus-extension</artifactId>
+      <groupId>com.baomidou</groupId>
+      <version>${mybatis-plus-boot-starter.version}</version>
+    </dependency>
+
+    <!-- Druid Starter -->
+    <dependency>
+      <artifactId>druid-spring-boot-starter</artifactId>
+      <groupId>com.alibaba</groupId>
+      <version>${druid-spring-boot-starter.version}</version>
+    </dependency>
+
+    <!-- Swagger Spring Boot Starter -->
+    <dependency>
+      <artifactId>swagger-spring-boot-starter</artifactId>
+      <groupId>com.spring4all</groupId>
+      <version>${swagger-spring-boot-starter.version}</version>
+    </dependency>
+
+    <!-- Guava -->
+    <dependency>
+      <artifactId>guava</artifactId>
+      <groupId>com.google.guava</groupId>
+      <version>${guava.version}</version>
+    </dependency>
+  </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- Spring Boot Dependencies -->
+      <dependency>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <scope>import</scope>
+        <type>pom</type>
+        <version>${spring-boot.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <groupId>com.cashzhang27</groupId>
+  <modelVersion>4.0.0</modelVersion>
+
+  <properties>
+    <druid-spring-boot-starter.version>1.1.21</druid-spring-boot-starter.version>
+    <guava.version>28.1-jre</guava.version>
+    <jdk.version>1.8</jdk.version>
+    <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
+    <mybatis-plus-boot-starter.version>3.3.1</mybatis-plus-boot-starter.version>
+    <mysql.connector.version>8.0.11</mysql.connector.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
+    <swagger-spring-boot-starter.version>1.9.1.RELEASE</swagger-spring-boot-starter.version>
+  </properties>
+
+  <version>1.0-SNAPSHOT</version>
+
+</project>

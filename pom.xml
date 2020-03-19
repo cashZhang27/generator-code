@@ -29,41 +29,6 @@
       <groupId>org.projectlombok</groupId>
     </dependency>
 
-    <!-- Spring Boot Starter -->
-    <dependency>
-      <artifactId>spring-boot-starter</artifactId>
-      <groupId>org.springframework.boot</groupId>
-    </dependency>
-    <!-- Spring Boot Web Starter -->
-    <dependency>
-      <artifactId>spring-boot-starter-web</artifactId>
-      <exclusions>
-        <!-- exclusion tomcat dependency -->
-        <exclusion>
-          <artifactId>spring-boot-starter-tomcat</artifactId>
-          <groupId>org.springframework.boot</groupId>
-        </exclusion>
-      </exclusions>
-      <groupId>org.springframework.boot</groupId>
-      <version>${spring-boot.version}</version>
-    </dependency>
-    <!-- Spring Boot Undertow Starter -->
-    <dependency>
-      <artifactId>spring-boot-starter-undertow</artifactId>
-      <groupId>org.springframework.boot</groupId>
-    </dependency>
-    <!-- Spring Boot Configuration Processor -->
-    <dependency>
-      <artifactId>spring-boot-configuration-processor</artifactId>
-      <groupId>org.springframework.boot</groupId>
-      <optional>true</optional>
-    </dependency>
-    <!-- Spring Boot AOP Starter -->
-    <dependency>
-      <artifactId>spring-boot-starter-aop</artifactId>
-      <groupId>org.springframework.boot</groupId>
-    </dependency>
-
     <!-- MySQL Connector -->
     <dependency>
       <artifactId>mysql-connector-java</artifactId>
@@ -78,11 +43,10 @@
       <version>${mybatis-plus-boot-starter.version}</version>
     </dependency>
 
-    <!-- Mybatis Plus Extension -->
     <dependency>
-      <artifactId>mybatis-plus-extension</artifactId>
       <groupId>com.baomidou</groupId>
-      <version>${mybatis-plus-boot-starter.version}</version>
+      <artifactId>mybatis-plus-generator</artifactId>
+      <version>3.3.1.tmp</version>
     </dependency>
 
     <!-- Druid Starter -->
@@ -105,6 +69,18 @@
       <groupId>com.google.guava</groupId>
       <version>${guava.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.freemarker</groupId>
+      <artifactId>freemarker</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-all</artifactId>
+      <version>5.2.3</version>
+    </dependency>
+
   </dependencies>
 
   <dependencyManagement>

@@ -12,6 +12,9 @@ import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +31,18 @@ public class GeneratorCodeApplication {
 
   public static String[] includeTableName = new String[] {"client"};
   public static String version = "v1.0";
+  public static String dbHost = "localhost";
+  public static String database = "test";
+  public static String username = "root";
+  public static String password = "root";
+
+  public static String parentPackage = "com.cashzhang27.bisme.web";
+  public static String superServiceClass = "com.cashzhang27.bisme.web.base.service.SuperService";
+  public static String superServiceImplClass =
+      "com.cashzhang27.bisme.web.base.service.impl.SuperServiceImpl";
+  public static String superEntityClass =
+      "com.cashzhang27.bisme.web.base.service.impl.SuperServiceImpl";
+  public static String superMapperClass = "com.cashzhang27.bisme.web.base.mapper.SuperMapper";
   /**
    * main function.
    *
@@ -46,22 +61,26 @@ public class GeneratorCodeApplication {
     gc.setOpen(false);
     // 实体属性 Swagger2 注解
     gc.setSwagger2(true);
+    gc.setServiceName("%sService");
     mpg.setGlobalConfig(gc);
 
     // 数据源配置
     DataSourceConfig dsc = new DataSourceConfig();
     dsc.setUrl(
-        "jdbc:mysql://localhost:3306/bisme?characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8");
+        "jdbc:mysql://"
+            + dbHost
+            + ":3306/"
+            + database
+            + "?characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8");
     dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-    dsc.setUsername("");
-    dsc.setPassword("");
+    dsc.setUsername(username);
+    dsc.setPassword(password);
     mpg.setDataSource(dsc);
 
     // 包配置
     PackageConfig pc = new PackageConfig();
-    pc.setParent("com.cashzhang27.bisme");
+    pc.setParent(parentPackage);
     mpg.setPackageInfo(pc);
-
     // 自定义配置
     InjectionConfig cfg =
         new InjectionConfig() {
@@ -69,6 +88,11 @@ public class GeneratorCodeApplication {
           public void initMap() {
             Map<String, Object> map = new HashMap<>();
             map.put("version", version);
+            map.put(
+                "currentDate",
+                LocalDateTime.now()
+                    .atZone(ZoneId.of("Asia/Shanghai"))
+                    .format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm")));
             this.setMap(map);
           }
         };
@@ -121,16 +145,14 @@ public class GeneratorCodeApplication {
     StrategyConfig strategy = new StrategyConfig();
     strategy.setNaming(NamingStrategy.underline_to_camel);
     strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-    strategy.setSuperServiceClass("com.cashzhang27.bisme.web.base.service.SuperService");
-    strategy.setSuperServiceImplClass(
-        "com.cashzhang27.bisme.web.base.service.impl.SuperServiceImpl");
-    strategy.setSuperEntityClass("com.cashzhang27.bisme.entity.SuperEntity");
-    strategy.setSuperMapperClass("com.cashzhang27.bisme.web.base.mapper.SuperMapper");
+    strategy.setSuperServiceClass(superServiceClass);
+    strategy.setSuperServiceImplClass(superServiceImplClass);
+    strategy.setSuperEntityClass(superEntityClass);
+    strategy.setSuperMapperClass(superMapperClass);
     strategy.setEntityLombokModel(true);
     strategy.setRestControllerStyle(true);
     strategy.setEntitySerialVersionUID(false);
-    // 写于父类中的公共字段
-    strategy.setSuperEntityColumns("id", "tenantId", "isDeleted");
+
     strategy.setInclude(includeTableName);
     strategy.setControllerMappingHyphenStyle(true);
     mpg.setStrategy(strategy);

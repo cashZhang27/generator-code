@@ -2,27 +2,19 @@ package ${package.Controller};
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import ${package.Service}.${table.serviceName};
-import ${package.Entity}.${entity};
-<#if entityLombokModel>
-import lombok.AllArgsConstructor;
-</#if>
-import org.springframework.web.bind.annotation.RequestMapping;
-<#if restControllerStyle>
-import org.springframework.web.bind.annotation.RestController;
-<#else>
-import org.springframework.stereotype.Controller;
-</#if>
 <#if superControllerClassPackage??>
 import ${superControllerClassPackage};
 </#if>
+import ${package.Entity}.${entity};
+import ${package.Service}.${table.serviceName};
 <#if swagger2>
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 </#if>
 import javax.validation.Valid;
+<#if entityLombokModel>
 import lombok.AllArgsConstructor;
+</#if>
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,8 +22,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+<#if restControllerStyle>
 import org.springframework.web.bind.annotation.RestController;
+<#else>
+import org.springframework.stereotype.Controller;
+</#if>
 
 /**
  * ${table.controllerName!}.
@@ -63,13 +58,14 @@ public class ${table.controllerName} {
 
   private ${table.serviceName} ${table.serviceName?uncap_first};
 
-  @ApiOperation("创建")
   @PostMapping
+  @ApiOperation("创建")
   public void create(@RequestBody @Valid ${entity} ${entity?uncap_first}) {
     this.${table.serviceName?uncap_first}.save(${entity?uncap_first});
   }
 
   @DeleteMapping("/{id}")
+  @ApiOperation("根据ID删除")
   public boolean deleteById(@PathVariable("id") String id) {
     return this.${table.serviceName?uncap_first}.removeById(id);
   }

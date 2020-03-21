@@ -41,7 +41,7 @@ public class GeneratorCodeApplication {
   public static String superServiceImplClass =
       "com.cashzhang27.bisme.web.base.service.impl.SuperServiceImpl";
   public static String superEntityClass =
-      "com.cashzhang27.bisme.web.base.service.impl.SuperServiceImpl";
+      "com.cashzhang27.bisme.web.base.entity.SuperEntity";
   public static String superMapperClass = "com.cashzhang27.bisme.web.base.mapper.SuperMapper";
   /**
    * main function.

@@ -72,7 +72,7 @@ public class ${table.controllerName} {
 
   @PutMapping("/{id}")
   @ApiOperation("根据ID修改")
-  public boolean updateById(@PathVariable("id") String id, ${entity} ${entity?uncap_first}) {
+  public boolean updateById(@PathVariable("id") String id, @RequestBody @Valid ${entity} ${entity?uncap_first}) {
     ${entity?uncap_first}.setId(id);
     return this.${table.serviceName?uncap_first}.updateById(${entity?uncap_first});
   }

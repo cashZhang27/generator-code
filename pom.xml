@@ -105,7 +105,7 @@
     <jdk.version>1.8</jdk.version>
     <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
     <mybatis-plus-boot-starter.version>3.3.1</mybatis-plus-boot-starter.version>
-    <mysql.connector.version>8.0.11</mysql.connector.version>
+    <mysql.connector.version>8.0.16</mysql.connector.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
     <swagger-spring-boot-starter.version>1.9.1.RELEASE</swagger-spring-boot-starter.version>

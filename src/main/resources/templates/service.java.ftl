@@ -7,8 +7,8 @@ import ${superServiceClassPackage};
  * ${table.serviceName!}.
  *
  * @author ${author}
- * @version ${cfg.version}
- * @since ${cfg.currentDate}
+ * @version ${cfg.version} ${cfg.currentDate}
+ * @since ${cfg.version}
  */
 <#if kotlin>
 interface ${table.serviceName} : ${superServiceClass}<${entity}>

@@ -7,8 +7,8 @@ import ${package.Entity}.${entity};
  * ${table.mapperName!}.
  *
  * @author ${author}
- * @version ${cfg.version}
- * @since ${cfg.currentDate}
+ * @version ${cfg.version} ${cfg.currentDate}
+ * @since ${cfg.version}
  */
 <#if kotlin>
 interface ${table.mapperName} : ${superMapperClass}<${entity}>

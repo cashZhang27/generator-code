@@ -19,8 +19,8 @@ import lombok.experimental.SuperBuilder;
  * ${table.comment!}.
  *
  * @author ${author}
- * @version ${cfg.version}
- * @since ${cfg.currentDate}
+ * @version ${cfg.version} ${cfg.currentDate}
+ * @since ${cfg.version}
  */
 <#if entityLombokModel>
 @Data
@@ -42,10 +42,7 @@ public class ${entity} extends ${superEntityClass}<#if activeRecord><${entity}><
 <#elseif activeRecord>
 public class ${entity} extends Model<${entity}> {
 <#else>
-public class ${entity} implements Serializable {
-</#if>
-<#if entitySerialVersionUID>
-  private static final long serialVersionUID = 1L;
+public class ${entity} {
 </#if>
 <#-- ----------  BEGIN 字段循环遍历  ---------->
 <#list table.fields as field>
@@ -58,7 +55,7 @@ public class ${entity} implements Serializable {
   @ApiModelProperty("${field.comment}")
         <#else>
   /**
-   * ${field.comment}
+   * ${field.comment}.
    */
         </#if>
     </#if>

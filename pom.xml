@@ -96,6 +96,33 @@
     </dependencies>
   </dependencyManagement>
 
+  <repositories>
+    <!-- aliyun agent central and jcenter repository -->
+    <repository>
+      <id>public</id>
+      <name>central and jcenter</name>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <url>https://maven.aliyun.com/repository/public</url>
+    </repository>
+    <!-- aliyun agent spring repository -->
+    <repository>
+      <id>spring</id>
+      <name>Spring Releases</name>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <url>https://maven.aliyun.com/repository/spring</url>
+    </repository>
+  </repositories>
+
   <groupId>com.cashzhang27</groupId>
   <modelVersion>4.0.0</modelVersion>
 

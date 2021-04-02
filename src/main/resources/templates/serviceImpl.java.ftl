@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
  * ${table.serviceImplName!}.
  *
  * @author ${author}
- * @version ${cfg.version}
- * @since ${cfg.currentDate}
+ * @version ${cfg.version} ${cfg.currentDate}
+ * @since ${cfg.version}
  */
 @Service
 <#if kotlin>

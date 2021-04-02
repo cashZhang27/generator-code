@@ -29,20 +29,32 @@ import java.util.Map;
  */
 public class GeneratorCodeApplication {
 
-  public static String[] includeTableName = new String[] {"client"};
+  //public static String[] includeTableName = new String[] {"client_scope_attribute"};
+
   public static String version = "v1.0";
-  public static String dbHost = "localhost";
-  public static String database = "test";
+
+  public static String url =
+      "jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true";
+
+  public static String driverName = "com.mysql.cj.jdbc.Driver";
+
   public static String username = "root";
+
   public static String password = "root";
 
-  public static String parentPackage = "com.cashzhang27.bisme.web";
-  public static String superServiceClass = "com.cashzhang27.bisme.web.base.service.SuperService";
+  public static String parentPackage = "com.cashzhang27.admin4j.auth.server.webmvc";
+
+  public static String superServiceClass = "com.cashzhang27.admin4j.core.service.SuperService";
+
   public static String superServiceImplClass =
-      "com.cashzhang27.bisme.web.base.service.impl.SuperServiceImpl";
+      "com.cashzhang27.admin4j.core.service.impl.SuperServiceImpl";
+
   public static String superEntityClass =
-      "com.cashzhang27.bisme.web.base.entity.SuperEntity";
-  public static String superMapperClass = "com.cashzhang27.bisme.web.base.mapper.SuperMapper";
+      "com.cashzhang27.admin4j.common.entity.SuperEntity";
+
+  public static String superMapperClass = "com.cashzhang27.admin4j.core.mapper.SuperMapper";
+
+
   /**
    * main function.
    *
@@ -60,19 +72,14 @@ public class GeneratorCodeApplication {
     gc.setAuthor("Cash Zhang");
     gc.setOpen(false);
     // 实体属性 Swagger2 注解
-    gc.setSwagger2(true);
+    gc.setSwagger2(false);
     gc.setServiceName("%sService");
     mpg.setGlobalConfig(gc);
 
     // 数据源配置
     DataSourceConfig dsc = new DataSourceConfig();
-    dsc.setUrl(
-        "jdbc:mysql://"
-            + dbHost
-            + ":3306/"
-            + database
-            + "?characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8");
-    dsc.setDriverName("com.mysql.cj.jdbc.Driver");
+    dsc.setUrl(url);
+    dsc.setDriverName(driverName);
     dsc.setUsername(username);
     dsc.setPassword(password);
     mpg.setDataSource(dsc);
@@ -80,12 +87,15 @@ public class GeneratorCodeApplication {
     // 包配置
     PackageConfig pc = new PackageConfig();
     pc.setParent(parentPackage);
+    pc.setEntity("entity.po");
     mpg.setPackageInfo(pc);
     // 自定义配置
     InjectionConfig cfg =
         new InjectionConfig() {
+
           @Override
           public void initMap() {
+
             Map<String, Object> map = new HashMap<>();
             map.put("version", version);
             map.put(
@@ -104,6 +114,7 @@ public class GeneratorCodeApplication {
     // 自定义配置会被优先输出
     focList.add(
         new FileOutConfig(templatePath) {
+
           @Override
           public String outputFile(TableInfo tableInfo) {
             // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
@@ -152,11 +163,17 @@ public class GeneratorCodeApplication {
     strategy.setEntityLombokModel(true);
     strategy.setRestControllerStyle(true);
     strategy.setEntitySerialVersionUID(false);
+    strategy.setEntityTableFieldAnnotationEnable(true);
+    strategy.setEntityBooleanColumnRemoveIsPrefix(true);
+    strategy
+        .setSuperEntityColumns("id", "is_deleted", "created_by", "created_at", "last_modified_by",
+            "last_modified_at");
 
-    strategy.setInclude(includeTableName);
+    //strategy.setInclude(includeTableName);
     strategy.setControllerMappingHyphenStyle(true);
     mpg.setStrategy(strategy);
     mpg.setTemplateEngine(new FreemarkerTemplateEngine());
     mpg.execute();
   }
+
 }
